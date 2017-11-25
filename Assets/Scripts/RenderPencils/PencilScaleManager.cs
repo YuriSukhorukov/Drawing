@@ -39,7 +39,6 @@ public class PencilScaleManager : MonoBehaviour
 			ColorSelectors.Add(selector);
 		}
 		grid.Reposition();
-		//grid.transform.parent.GetComponent<UIScrollView>().ResetPosition();
 		UiGrid = grid;
 
 		foreach (ColorSelector colorSelector in ColorSelectors)
@@ -59,9 +58,6 @@ public class PencilScaleManager : MonoBehaviour
 			new Vector3(newButton.transform.position.x, newButton.transform.position.y + 30f, 0);
 		ColorSelector colorSelector = newButton.GetComponent<ColorSelector>();
 		colorSelector.Index = id;
-
-		//colorSelector.GetPencilMeshRenderer(MaterialManager.Materials[colorSelector.Index]);
-		//colorSelector.PencilRenderer.material = MaterialManager.Materials[colorSelector.Index];//!!!
 
 		UIEventListener.Get(newButton).onClick += OnClickEventHandler;
 		return newButton;
@@ -83,15 +79,9 @@ public class PencilScaleManager : MonoBehaviour
 	
 	public void UpdateColorSelectorSize(ColorSelector colorSelector)
 	{
-		//BoxCollider = GetComponent<BoxCollider2D>();
 		grid.cellWidth = (RootWidget.width / 19)+6;
 		colorSelector.UISprite.width = RootWidget.width / 19;
 		colorSelector.BoxCollider.size = new Vector2(colorSelector.UISprite.width, colorSelector.UISprite.height);
-			
-		//Transform pencilRendererTransform = colorSelector.PencilRenderer.transform;
 		BoxCollider2D boxCollider2D = colorSelector.gameObject.GetComponent<BoxCollider2D>();
-
-		//pencilRendererTransform.localScale = new Vector3(boxCollider2D.size.x+1.5f, boxCollider2D.size.x, 0.1f);
-		//grid.transform.localPosition = new Vector3(pencilRendererTransform.localPosition.x, -colorSelector.UISprite.height+10, pencilRendererTransform.localPosition.z);
 	}
 }
